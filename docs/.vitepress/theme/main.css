@@ -1,3 +1,7 @@
+:root {
+  --vp-sidebar-width: 0;
+}
+
 .container > .VPNavBarTitle {
   border: none !important;
   background: none !important;
@@ -17,4 +21,9 @@
 
 img {
   border-radius: 2px;
+}
+
+div.aside {
+  display: none !important;
+  width: 0;
 }
