@@ -27,3 +27,15 @@ div.aside {
   display: none !important;
   width: 0;
 }
+
+.VPNavBar {
+  backdrop-filter: saturate(50%) blur(8px);
+  background: var(--vp-c-bg-alpha-with-backdrop);
+}
+
+@media (min-width: 960px) {
+  .VPNavBar .content {
+    backdrop-filter: none !important;
+    background: none !important;
+  }
+}
