@@ -6,31 +6,33 @@ import removeMd from "remove-markdown";
 
 const articles = glob.sync("./docs/articles/*.md");
 
-const data = await Promise.all(
-  articles.map(async (article) => {
-    const file = matter.read(article, {
-      excerpt: true,
-      excerpt_separator: "<!-- more -->",
-    });
+const data = (
+  await Promise.all(
+    articles.map(async (article) => {
+      const file = matter.read(article, {
+        excerpt: true,
+        excerpt_separator: "<!-- more -->",
+      });
 
-    const { data, excerpt, path } = file;
-    const contents = removeMd(excerpt)
-      .trim()
-      .split(/\r\n|\n|\r/);
-
-    return {
-      ...data,
-      Updated: data.Updated.toISOString().split("T")[0],
-      path: path.replace("./docs/", "").replace(/\.md$/, ".html"),
-      excerpt: contents
-        .slice(1)
-        .join("")
-        .replace(/\s{2,}/g, "")
+      const { data, excerpt, path } = file;
+      const contents = removeMd(excerpt, { useImgAltText: false })
         .trim()
-        .replace(/{{*?(.*?)}}/g, ""),
-    };
-  })
-);
+        .split(/\r\n|\n|\r/);
+
+      return {
+        ...data,
+        Updated: data.Updated.toISOString().split("T")[0],
+        path: path.replace("./docs/", "").replace(/\.md$/, ".html"),
+        excerpt: contents
+          .slice(1)
+          .join("")
+          .replace(/\s{2,}/g, "")
+          .trim()
+          .replace(/{{*?(.*?)}}/g, ""),
+      };
+    })
+  )
+).reverse();
 
 await fs.writeFile("./data.json", JSON.stringify(data), "utf-8");
 
