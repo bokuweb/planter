@@ -1,0 +1,20 @@
+.container > .VPNavBarTitle {
+  border: none !important;
+  background: none !important;
+}
+
+.VPSidebar {
+  display: none;
+}
+
+.VPLocalNav {
+  display: none !important;
+}
+
+.card-wrapper {
+  margin-bottom: 3.6rem;
+}
+
+img {
+  border-radius: 2px;
+}
