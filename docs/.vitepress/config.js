@@ -1,5 +1,5 @@
 export default {
-  title: "Impl Planter",
+  title: "Impl Planter for Me {}",
   description: "My plants log",
   base: "/planter/",
   themeConfig: {
