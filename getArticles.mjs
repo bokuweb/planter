@@ -1,13 +1,14 @@
 import fs from "node:fs/promises";
 import path from "path";
+import glob from "glob";
 import matter from "gray-matter";
 import removeMd from "remove-markdown";
 
-const articles = await fs.readdir("./docs/articles");
+const articles = glob.sync("./docs/articles/*.md");
 
 const data = await Promise.all(
   articles.map(async (article) => {
-    const file = matter.read(`./docs/articles/${article}`, {
+    const file = matter.read(article, {
       excerpt: true,
       excerpt_separator: "<!-- more -->",
     });
