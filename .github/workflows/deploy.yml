@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn
+      - run: yarn docs:build
+      - name: page
+        uses: s0/git-publish-subdir-action@v2.6.0
+        env:
+          REPO: self
+          BRANCH: page
+          FOLDER: docs/.vitepress/dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
