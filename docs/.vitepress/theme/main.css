@@ -41,7 +41,7 @@ div.aside {
 }
 
 @media (min-width: 1440px) {
-  .VPContent .has-sidebar {
+  .VPContent.has-sidebar {
     padding-right: 0 !important;
     padding-left: 0 !important;
   }
