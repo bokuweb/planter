@@ -39,3 +39,12 @@ div.aside {
     background: none !important;
   }
 }
+
+@media (min-width: 1440px) {
+  .VPContent .has-sidebar {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+
