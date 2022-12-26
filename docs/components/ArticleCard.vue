@@ -71,8 +71,9 @@ export default {
 }
 
 .media {
-  width: 80%;
+  width: 30%;
   height: 100%;
+  flex: none;
   object-fit: cover;
   object-position: center;
 }
