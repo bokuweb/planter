@@ -43,7 +43,9 @@ export default {
   <div class="card">
     <div class="flex">
       <div class="media">
-        <img :src="image" :alt="title" loading="lazy" />
+        <a :href="href">
+          <img :src="image" :alt="title" loading="lazy" />
+        </a>
       </div>
       <div class="details">
         <a :href="href">
