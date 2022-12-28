@@ -44,7 +44,7 @@ export default {
     <div class="flex">
       <div class="media">
         <a :href="href">
-          <img :src="image" :alt="title" loading="lazy" />
+          <img :src="image" :alt="title" loading="lazy" decoding="async"/>
         </a>
       </div>
       <div class="details">
