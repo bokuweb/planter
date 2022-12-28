@@ -1,3 +1,7 @@
+---
+layout: home
+---
+
 <script setup>
   import Hero from './components/Hero.vue'
   import ArticleCard from './components/ArticleCard.vue'
