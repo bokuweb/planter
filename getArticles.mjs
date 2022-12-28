@@ -3,6 +3,7 @@ import path from "path";
 import glob from "glob";
 import matter from "gray-matter";
 import removeMd from "remove-markdown";
+import sharp from "sharp";
 
 const articles = glob.sync("./docs/articles/*.md");
 
@@ -14,15 +15,35 @@ const data = (
         excerpt_separator: "<!-- more -->",
       });
 
-      const { data, excerpt, path } = file;
+      const { data, excerpt } = file;
       const contents = removeMd(excerpt, { useImgAltText: false })
         .trim()
         .split(/\r\n|\n|\r/);
 
+      console.log(data.image);
+      if (data.image) {
+        await new Promise((r) => {
+          sharp(path.resolve("docs/public", path.basename(data.image)))
+            .webp({ lossless: true })
+            .resize(320, 240)
+            .toFile(
+              path
+                .resolve("docs/public", path.basename(data.image))
+                .replace(".jpg", "-min.webp"),
+              (err, info) => {
+                if (err) {
+                  throw err;
+                }
+                r();
+              }
+            );
+        });
+      }
+
       return {
         ...data,
         Updated: data.Updated.toISOString().split("T")[0],
-        path: path.replace("./docs/", "").replace(/\.md$/, ".html"),
+        path: file.path.replace("./docs/", "").replace(/\.md$/, ".html"),
         excerpt: contents
           .slice(1)
           .join("")

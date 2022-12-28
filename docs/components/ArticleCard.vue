@@ -35,6 +35,9 @@ export default {
       }
       return text;
     },
+    imagePath(text) {
+      return text.replace('.jpg', '-min.webp');
+    },
   },
 };
 </script>
@@ -44,7 +47,14 @@ export default {
     <div class="flex">
       <div class="media">
         <a :href="href">
-          <img :src="image" :alt="title" loading="lazy" decoding="async"/>
+          <img
+            :src="imagePath(image)"
+            :alt="title"
+            loading="lazy"
+            decoding="async"
+            width="320"
+            height="240"
+          />
         </a>
       </div>
       <div class="details">
