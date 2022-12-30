@@ -62,7 +62,7 @@ export default {
           <h2 class="title">{{ title }}</h2>
         </a>
         <span class="date">{{ date }}</span>
-        <p class="excerpt">{{ truncateText(excerpt, 70) }}</p>
+        <p class="excerpt">{{ truncateText(excerpt, 80) }}</p>
       </div>
     </div>
   </div>
