@@ -28,10 +28,10 @@ export default {
   },
   methods: {
     truncateText(text, length) {
-      const segmenter = new Intl.Segmenter("ja", { granularity: "grapheme" });
-      const segments = [...segmenter.segment(text)].map((s) => s.segment);
-      if (segments.length > length) {
-        return segments.slice(0, length).join("") + "...";
+      // const segmenter = new Intl.Segmenter("ja", { granularity: "grapheme" });
+      // const segments = [...segmenter.segment(text)].map((s) => s.segment);
+      if ([...text].length > length) {
+        return [...text].slice(0, length).join("") + "...";
       }
       return text;
     },
